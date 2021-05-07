@@ -174,9 +174,9 @@ void PriorityQueue<T>::printQueue()
         int k = 0;
         while(true)
         {
-            if(2*j+1 < n-i-1 && a[2*j + 1].data_priority < a[k].data_priority)
+            if(2*j+1 < n-i-1 && a[2*j + 1].data_priority > a[k].data_priority)
                 k = 2*j + 1;
-            if(2*j+2 < n-i-1 && a[2*j + 2].data_priority < a[k].data_priority)
+            if(2*j+2 < n-i-1 && a[2*j + 2].data_priority > a[k].data_priority)
                 k = 2*j + 2;
             if(k == j)
                 break;
@@ -199,7 +199,7 @@ template<typename T>
 void PriorityQueue<T>::enqueue(T dataPriority, T data_value)
 {
     this->list.push_back(Node<T>(dataPriority, data_value));
-    for(int i = list.size() - 1; i > 0 && list[(i-1) / 2].data_priority > list[i].data_priority; i = (i - 1) / 2)
+    for(int i = list.size() - 1; i > 0 && list[(i-1) / 2].data_priority < list[i].data_priority; i = (i - 1) / 2)
     {
         swap(i, (i-1) / 2, list);
     }
@@ -218,9 +218,9 @@ void PriorityQueue<T>::dequeueMax()
     int n = list.size();
     while(true)
     {
-        if(2*j+1 < n && list[2*j + 1].data_priority < list[k].data_priority)
+        if(2*j+1 < n && list[2*j + 1].data_priority > list[k].data_priority)
             k = 2*j + 1;
-        if(2*j+2 < n && list[2*j + 2].data_priority < list[k].data_priority)
+        if(2*j+2 < n && list[2*j + 2].data_priority > list[k].data_priority)
             k = 2*j + 2;
         if(k == j)
             break;
@@ -269,6 +269,7 @@ int main()
     queue.enqueue(27, 27);
     queue.enqueue(25, 25);
 
+    queue.printQueue();
     queue.dequeueMax();
     queue.printQueue();
 
