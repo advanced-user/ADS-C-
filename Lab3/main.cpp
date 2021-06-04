@@ -119,7 +119,7 @@ public:
     int getSize() { return size;}
     bool isEmpty();
     void printQueue();
-    void enqueue (T data_priority, T data_value);
+    void enqueue (T dataPriority, T data_value);
     void dequeueMax();
 
 private:
@@ -146,7 +146,7 @@ PriorityQueue<T>::PriorityQueue() {
 }
 
 template<typename T>
-PriorityQueue<T>::~PriorityQueue() {}
+PriorityQueue<T>::~PriorityQueue() = default;
 
 template<typename T>
 bool PriorityQueue<T>::isEmpty()
